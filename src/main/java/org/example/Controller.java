@@ -40,6 +40,7 @@ public class Controller {
         register("on", switchOn);
         register("off", switchOff);
         register("move", moveSequensCommand);
+        register("find", fineNearest);
     }
 
     public void activate (String commandName, HashMap<String, Object> params) {
@@ -54,21 +55,29 @@ public class Controller {
     }
 
     public void findNearestCabinCommand () {
+        System.out.println("findNearestCabinCommand");
         SequenceOfStops currentSequenceOfStops = new SequenceOfStops();
+        if (currentSequenceOfStops.stopFloors ==null ) {
+            currentSequenceOfStops.stopFloors = new ArrayList<>();
+        }
         currentSequenceOfStops.stopFloors.add(1);
         currentSequenceOfStops.stopFloors.add(4);
         currentSequenceOfStops.stopFloors.add(5);
         currentSequenceOfStops.currentFloor = 2;
+        if ( orderSequenceOfStops== null) {
+            orderSequenceOfStops = new ArrayList<>();
+        }
         orderSequenceOfStops.add(currentSequenceOfStops);
         //определить ближайшую кабину
         //запустить в отдельном потоке
         //while {
-        shafts.get(0).activate();
+        shafts.get(0).activateShaft();
         //}
 
     }
 
     public void moveSequens (Shaft shaft) {
+        System.out.println("moveSequens");
         if (orderSequenceOfStops!=null && !orderSequenceOfStops.isEmpty()) {
             shaft.setSequenceOfStops(orderSequenceOfStops.get(0));
             orderSequenceOfStops.remove(0);

@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Shaft {
-    private SequenceOfStops  sequenceOfStops;
+    private SequenceOfStops sequenceOfStops;
     private final HashMap<String, Command> commandMap;
 
-    private final List<DoneComand> doneComands =new ArrayList<>();
+    private final List<DoneComand> doneComands = new ArrayList<>();
 
     public Shaft (HashMap<String, Command> commandMap) {
         this.commandMap = commandMap;
@@ -24,13 +24,16 @@ public class Shaft {
         this.sequenceOfStops = sequenceOfStops;
     }
 
-    public void activate(){
+    public void activateShaft () {
+        System.out.println("activateShaft");
         doneComands.clear();
-        for(int stopFloor : sequenceOfStops.stopFloors){
-            System.out.println("stop on floor " + Integer.toString(stopFloor)  );
-            //дергаем команды для каждого этажа т.е. старт стоп опенДор слосе дор....
-            DoneComand doneComand= new DoneComand();
-            doneComands.add(doneComand);
+        if (sequenceOfStops != null && sequenceOfStops.stopFloors != null) {
+            for (int stopFloor : sequenceOfStops.stopFloors) {
+                System.out.println("stop on floor " + Integer.toString(stopFloor));
+                //дергаем команды для каждого этажа т.е. старт стоп опенДор слосе дор....
+                DoneComand doneComand = new DoneComand();
+                doneComands.add(doneComand);
+            }
         }
     }
 

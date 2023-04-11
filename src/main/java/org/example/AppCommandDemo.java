@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.HashMap;
 
-public class CommandDemo {
+public class AppCommandDemo {
     public static void main(final String[] arguments) {
         System.out.println( "start Controler !" );
         int numOfShafts = 2;
@@ -18,6 +18,7 @@ public class CommandDemo {
         map.put("shaft", controller.getShafts().get(0));
 
         controller.activate("move", map);
+        controller.activate("find", map);
 
     }
 }
